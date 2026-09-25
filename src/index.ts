@@ -67,7 +67,7 @@ async function buildEntryData(
   const fields = new Map(collection.fields.map((field) => [field.slug, field]));
   const bodyField = fields.get(target.bodyField);
   if (!bodyField || bodyField.type !== "portableText") {
-    throw PluginRouteError.validation(
+    throw PluginRouteError.badRequest(
       `Field "${target.bodyField}" must exist and use the portableText type`,
     );
   }
