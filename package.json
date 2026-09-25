@@ -1,0 +1,39 @@
+{
+  "name": "emdash-github-content",
+  "version": "0.1.0",
+  "description": "Import and synchronize GitHub Markdown as rich EmDash content.",
+  "type": "module",
+  "main": "./dist/index.mjs",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
+    },
+    "./admin": "./src/admin.tsx",
+    "./astro": "./src/astro/index.ts"
+  },
+  "files": ["dist", "src/admin.tsx", "src/astro"],
+  "scripts": {
+    "build": "tsdown src/index.ts --format esm --dts --clean",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run typecheck && npm run build"
+  },
+  "peerDependencies": {
+    "astro": ">=6.0.0-beta.0",
+    "emdash": ">=0.15.0",
+    "react": "^18.0.0 || ^19.0.0"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "remark-gfm": "^4.0.1",
+    "remark-parse": "^11.0.0",
+    "unified": "^11.0.5"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "tsdown": "^0.20.0",
+    "typescript": "^5.9.0"
+  },
+  "keywords": ["emdash", "cms", "github", "markdown", "portable-text"],
+  "license": "MIT"
+}
