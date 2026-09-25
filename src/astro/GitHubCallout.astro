@@ -1,0 +1,37 @@
+---
+interface Props {
+  value: {
+    tone?: "note" | "tip" | "important" | "warning" | "caution";
+    text?: string;
+  };
+}
+
+const { value } = Astro.props;
+const label = (value.tone ?? "note").toUpperCase();
+---
+
+<aside class:list={["github-content-callout", `tone-${value.tone ?? "note"}`]}>
+  <strong>{label}</strong>
+  <p>{value.text}</p>
+</aside>
+
+<style>
+  .github-content-callout {
+    margin: 1.5rem 0;
+    padding: 1rem 1.125rem;
+    border: 1px solid var(--line, #ddd);
+    border-left-width: 4px;
+    border-radius: 0.75rem;
+  }
+
+  .github-content-callout strong {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+  }
+
+  .github-content-callout p {
+    margin: 0;
+  }
+</style>
